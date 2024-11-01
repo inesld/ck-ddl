@@ -1,0 +1,49 @@
+SQL Commands
+
+    Create the Customer table:
+
+    sql
+
+CREATE TABLE Customer (
+    Customer_id NUMBER PRIMARY KEY,
+    customer_Name VARCHAR2(50),
+    customer_Tel VARCHAR2(20)
+);
+
+Create the Product table:
+
+sql
+
+CREATE TABLE Product (
+    Product_id NUMBER PRIMARY KEY,
+    product_name VARCHAR2(50),
+    Price NUMBER(10, 2)
+);
+
+Create the Orders table with foreign key constraints for Customer_id and Product_id:
+
+sql
+
+CREATE TABLE Orders (
+    Customer_id NUMBER,
+    Product_id NUMBER,
+    quantity NUMBER,
+    total_amount NUMBER(10, 2),
+    PRIMARY KEY (Customer_id, Product_id),
+    FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id),
+    FOREIGN KEY (Product_id) REFERENCES Product(Product_id)
+);
+
+Add a Category column to the Product table:
+
+sql
+
+ALTER TABLE Product
+ADD Category VARCHAR2(20);
+
+Add an OrderDate column to the Orders table with SYSDATE as the default value:
+
+sql
+
+ALTER TABLE Orders
+ADD OrderDate DATE DEFAULT SYSDATE;
